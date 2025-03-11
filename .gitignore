@@ -1,0 +1,10 @@
+Models/Classifiers/* 
+Models/ILM/*
+__pycache__
+.DS_Store
+Data/Classifier_data
+Data/ILM
+Data/raw
+ilm/data/char_masks/compound_dataset
+Data/*
+extention_sexism/Model/*
