@@ -7,4 +7,4 @@ Data/ILM
 Data/raw
 ilm/data/char_masks/compound_dataset
 Data/*
-extention_sexism/Model/*
+extension_sexism/Model/*
