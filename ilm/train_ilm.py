@@ -64,9 +64,11 @@ def save_model(model, optimizer, step, base_dir, last_step):
     def out_fn_to_fp(filename):
         return os.path.join(iteration_dir, filename)
     model_to_save = model.module if hasattr(model, 'module') else model
+    print(last_step)
 
     if last_step!=None:
         last_dir = os.path.join(base_dir, f'step_{last_step}')
+        print(last_dir)
         shutil.rmtree(last_dir)
         print(f"Removed last iteration directory: {last_dir}")
 
@@ -533,6 +535,7 @@ def train(args):
 
   else:
     print('Training')
+    last_best_step=None 
     set_random_seed(args.seed)
     best_eval_loss = None
     num_save = -1
@@ -594,7 +597,6 @@ def train(args):
           if args.wandb:
             wandb.log(eval_dict, step=step)
 
-          last_best_step=None 
           if best_eval_loss is None or eval_dict['eval_infill_loss'] < best_eval_loss:
             print('Saving')
             model_to_save = model.module if hasattr(model, 'module') else model
@@ -781,7 +783,7 @@ if __name__ == '__main__':
     wandb.config.update(args)
 
   if args.seed is None:
-    args.seed = random.randint(0, 1e6)
+    args.seed = 42 #random.randint(0, 1e6)
   print('Random seed {}'.format(args.seed))
 
   train(args)

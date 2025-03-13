@@ -104,7 +104,7 @@ def generate_masked_text(orig_text, num_samples, mask_tokn, tokenizer, reverse=F
         subtext = ""
         for ii, qq in enumerate(mm):
             if qq and subtext:
-                token_ids = token_ids + ilm.tokenize_util.encode(subtext.rstrip(), tokenizer) + [mask_tokn]
+                token_ids = token_ids + ilm.ilm.tokenize_util.encode(subtext.rstrip(), tokenizer) + [mask_tokn]
                 subtext = " "
             elif qq:
                 token_ids = token_ids + [mask_tokn]
@@ -114,7 +114,7 @@ def generate_masked_text(orig_text, num_samples, mask_tokn, tokenizer, reverse=F
             else:
                 subtext = split_txt[ii] + " "
         if subtext:
-            token_ids = token_ids + ilm.tokenize_util.encode(subtext.rstrip(), tokenizer)
+            token_ids = token_ids + ilm.ilm.tokenize_util.encode(subtext.rstrip(), tokenizer)
 
         if merge_conseq_infills:
             merged_token_ids = [token_ids[0]]
@@ -136,7 +136,7 @@ def infill_masked(masked, model, additional_tokens_to_ids, tokenizer, num_infill
     generated = []
     for mm in masked:
         gg = infill_with_ilm(model, additional_tokens_to_ids, mm, num_infills=num_infills)[0]
-        generated.append(ilm.tokenize_util.decode(gg, tokenizer).strip(":"))
+        generated.append(ilm.ilm.tokenize_util.decode(gg, tokenizer).strip(":"))
     return generated
 
 

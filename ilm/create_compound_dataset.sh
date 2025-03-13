@@ -1,12 +1,12 @@
 #!/bin/bash
 
-DATASET="Data/ILM/compound_dataset"
+DATASET="Data/data_ilm/compound_dataset"
 
 for SPLIT in train valid
 do
 python ilm/create_ilm_examples.py \
   ${SPLIT} \
-  data/char_masks/${DATASET} \
+  ${DATASET} \
   --data_dir ${DATASET} \
   --seed 0 \
   --data_name custom \
