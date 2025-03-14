@@ -9,3 +9,4 @@ ilm/data/char_masks/compound_dataset
 Data/*
 extension_sexism/Model/*
 Model/*
+Classifier_baselines.pickle
